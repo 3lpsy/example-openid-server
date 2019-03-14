@@ -40,6 +40,7 @@ Configure environment:
     # disable check https (DO NOT USE these IN PRODUCTION)
     $ cp .env.example .env
     # you may need to change OAUTH2_JWT_ISS depending on your client
+    # you will also need to delete and recreate the jwt.pem/jwt.pub keys
 
 Create Database and run the development server:
 
