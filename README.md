@@ -1,26 +1,33 @@
 # How to create an OAuth 2.0 Provider
 
-This is an example of OAuth 2.0 server in [Authlib](https://authlib.org/).
+This is an example of OAuth 2.0 server with OpenID Connect SUpportin [Authlib](https://authlib.org/).
 If you are looking for old Flask-OAuthlib implementation, check the
 `flask-oauthlib` branch.
 
 - Documentation: <https://docs.authlib.org/en/latest/flask/oauth2.html>
 - Authlib Repo: <https://github.com/lepture/authlib>
 
-## Sponsors
+<!-- ## Sponsors -->
 
-<table>
+<!-- <table>
   <tr>
     <td><img align="middle" width="48" src="https://user-images.githubusercontent.com/290496/39297078-89d00928-497d-11e8-8119-0c53afe14cd0.png"></td>
     <td>If you want to quickly add secure token-based authentication to Python projects, feel free to check Auth0's Python SDK and free plan at <a href="https://auth0.com/overview?utm_source=GHsponsor&utm_medium=GHsponsor&utm_campaign=example-oauth2-server">auth0.com/overview</a>.</td>
   </tr>
-</table>
+</table> -->
 
 ## Take a quick look
 
-This is a ready to run example, let's take a quick experience at first. To
+This is a ready to run example, let's take a quick experience at first. This works best in a virutal environment. To
 run the example, we need to install all the dependencies:
 
+    # clone the master branch of authlib to get version 0.11.dev0
+    $ git clone https://github.com/lepture/authlib.git authlib
+    $ cd authlib
+    $ pip install .
+    $ cd ..
+    $ git clone https://github.com/3lpsy/example-openid-server.git
+    $ cd example-openid-server
     $ pip install -r requirements.txt
 
 Set Flask and Authlib environment variables:
@@ -28,17 +35,19 @@ Set Flask and Authlib environment variables:
     # disable check https (DO NOT SET THIS IN PRODUCTION)
     $ export AUTHLIB_INSECURE_TRANSPORT=1
 
+Configure environment:
+
+    # disable check https (DO NOT USE these IN PRODUCTION)
+    $ cp .env.example .env
+    # you may need to change OAUTH2_JWT_ISS depending on your client
+
 Create Database and run the development server:
 
-    $ flask initdb
-    $ flask run
+    $ ./manage.py initdb
+    $ ./manage.py run --debug --port 5000
 
 Now, you can open your browser with `http://127.0.0.1:5000/`, login with any
 name you want.
-
-Before testing, we need to create a client:
-
-![create a client](https://user-images.githubusercontent.com/290496/38811988-081814d4-41c6-11e8-88e1-cb6c25a6f82e.png)
 
 Get your `client_id` and `client_secret` for testing. In this example, we
 have enabled `password` grant types, let's try:
