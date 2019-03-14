@@ -70,7 +70,6 @@ def authorize():
     user = current_user()
     if request.method == 'GET':
         try:
-            print("Validating consent request for end user:", user)
             grant = authorization.validate_consent_request(end_user=user)
         except OAuth2Error as error:
             print('OAuth2Error:', error.__class__.__name__, error.description)
