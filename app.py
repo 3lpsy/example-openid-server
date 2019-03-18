@@ -13,7 +13,7 @@ app = create_app({
     'OAUTH2_JWT_PUBLIC_KEY_PATH': str(Path(os.getenv('OAUTH2_JWT_PUBLIC_KEY_PATH')).resolve()),
     'SQLALCHEMY_TRACK_MODIFICATIONS': os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == "1",
     'OAUTH2_JWT_ISS': os.getenv('OAUTH2_JWT_ISS'),
-    'OAUTH2_JWT_EXP': os.getenv('OAUTH2_JWT_EXP'),
+    'OAUTH2_JWT_EXP': int(os.getenv('OAUTH2_JWT_EXP')),
     'SQLALCHEMY_DATABASE_URI': os.getenv('SQLALCHEMY_DATABASE_URI')
 })
 
